@@ -1,0 +1,30 @@
+.contenedor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  width: 80%;
+  height: 35%;
+  margin: 12rem;
+}
+
+.imagen {
+  height: 100%;
+  width: 100%;
+  border-radius: 2%;
+  justify-content: center;
+  margin: 5px;
+  padding: 25px;
+}
+
+.description {
+  height: 90%;
+  width: 90%;
+  justify-content: left;
+  background-color: rgb(193, 84, 6);
+  color: #fefefe;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-radius: 15%;
+  margin: 1rem;
+  padding: 25px;
+}

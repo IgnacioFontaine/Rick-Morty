@@ -1,70 +1,121 @@
-# Getting Started with Create React App
+HW8 | React Estado LifeCycle - Integration
+🕒 DURACIÓN ESTIMADA
+90 minutos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+💻 RICK AND MORTY APP 💻
+📝 INTRODUCCIÓN
+Hasta el momento, en nuestra Rick & Morty App tenemos estos 3 componentes: Card, Cards y SearchBar.
 
-## Available Scripts
+Adicionalmente, crearemos otro componente denominado Nav que será nuestra barra superior de navegación, el cual envolverá a la SearchBar.
 
-In the project directory, you can run:
+📋 INSTRUCCIONES
+👩‍💻 EJERCICIO 1 | Nav
+Dirígete a tu archivo App.js y elimina tu SearchBar.
+Crear el componente Nav dentro de la carpeta "components".
+Renderiza la SearchBar dentro de este componente.
 
-### `npm start`
+👩‍💻 EJERCICIO 2 | Home
+Elimina la Card "suelta" que se está renderizando.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Importa y renderiza el componente Nav.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+¡Aplica los estilos que más quieras!
 
-### `npm test`
+Puedes guiarte a partir de la siguiente imagen cómo puede quedar tu aplicación:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Recuadro rojo: Nav
+Recuadro amarillo: SearchBar
+Recuadro verde: Cards
+Recuadro azul: Card
 
-### `npm run build`
+👩‍💻 EJERCICIO 3 | Estado
+En este momento estamos dependiendo de un archivo data.js para recibir a los personajes. Lo que haremos ahora será crear un estado que nos permita almacenar personajes directamente.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para esto, dirígete al componente App.js y:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Elimina el import y el archivo data.js. A partir de ahora ya no lo utilizaremos.
+Importa el hook useState.
+Crea un estado local llamado characters el cual se debe inicializar como un arreglo vacío.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+👩‍💻 EJERCICIO 4 | On Search
+Ahora crearás una función llamada onSearch que te servirá para agregar nuevos personajes al estado que creaste en el ejercicio anterior.
 
-### `npm run eject`
+Crea una función llamada onSearch en tu archivo App.js.
+Cada vez que esta función sea ejecutada deberá agregar un nuevo personaje a tu estado local characters.
+Como por el momento no vamos a recibir nuevos personajes, utilizaremos uno "por default". Es decir, cada vez que se ejecute la función anterior se debe agregar este personaje al estado local.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+const example = {
+id: 1,
+name: 'Rick Sanchez',
+status: 'Alive',
+species: 'Human',
+gender: 'Male',
+origin: {
+name: 'Earth (C-137)',
+url: 'https://rickandmortyapi.com/api/location/1',
+},
+image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+};
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+👩‍💻 EJERCICIO 5 | SearchBar & onSearch
+Una vez que hayas creado la función onSearch deberás:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Pasársela como propiedad al componente Nav.
+Pasársela como propiedad al componente SearchBar.
+¡Listo! Si levantas tu proyecto y compruebas en tu navegador, cade vez que haces click sobre el botón "Agregar", se mostrará un nuevo personaje. Debería quedar algo así:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+🔎 ALTO AQUÍ
+Hasta el momento podemos agregar a un mismo personaje dentro de nuestra aplicación, pero... ¿Cómo podríamos agregar a distintos personajes?
 
-## Learn More
+🤓 Una buena idea sería utilizar nuestra SearchBar, ¿no te parece?
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Podríamos escribir dentro de nuestra SearchBar el ID de un personaje, y que este se agregue automáticamente en nuestra aplicación.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+✅ ¡Sigamos para descrubir cómo llevar esto a cabo!
 
-### Code Splitting
+👩‍💻 EJERCICIO 6 | Parámetros
+Ahora nos dirigiremos a la SearchBar para realizar algunas modificaciones. De esta forma podremos guardar el ID que escriba el usuario de nuestra aplicación.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Importa y crea un estado local llamado id. Debe inicializarse como un string vacío.
+Crea una función handleChange de modo que, cada vez que el usuario escriba algo en el input, este se guarde en el estado local id.
+No te olvides de pasarle esta función al input, y asignarle a este el estado local como su value.
+Una vez que hayas cumplido con todos estos pasos, asegúrate de que cada vez que se ejecute la función onSearch esa reciba el estado id como argumento.
 
-### Analyzing the Bundle Size
+👩‍💻 EJERCICIO 7 | API Connection
+Ahora modificaremos la función onSearch para que busque nuevos personajes en la API de Rick & Morty. Para esto:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Instala la dependencia "axios". Una vez instala impórtala en el componente App.js.
 
-### Making a Progressive Web App
+Elimina la función onSearch que ya creaste y remplázala por esta nueva función:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+function onSearch(id) {
+axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+if (data.name) {
+setCharacters((oldChars) => [...oldChars, data]);
+} else {
+window.alert('¡No hay personajes con este ID!');
+}
+});
+}
+[NOTA]: como aún no hemos visto promesas, tienes este snippet para que copies la funcionalidad.
 
-### Advanced Configuration
+👩‍💻 EJERCICIO 8 | On Close
+En este momento, el componente Cards les está pasando al componente Card una función llamada onClose. Esta función no está realizando nada más que mostrar un aviso en el navegador. ¡Ahora le daremos la funcionalidad que estamos buscando! Para esto:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Dirígete a tu componente App.js y crea una función con el nombre onClose. Esta función recibirá por parámetro un id.
+Dentro de la función deberás realizar un filtro de tu estado local en el que te quedes con todos aquellos personajes cuyo id sea distinto al que recibes por parámetro.
+[NOTA]: el id que recibes por parámetro es un string, pero el que debes comparar en tus personajes es un number. ¡Parséalo!
 
-### Deployment
+Setea este resultado en tu estado local characters.
+Dirígete al componente Cards y envíale el id del personaje como propiedad al componente Card.
+Finalmente dirígete al componente Card y pasále el id que recibes por props a la funcion onClose cuando se ejecuta.
+Ahora solo queda que pases esta función al componente Cards, y que este se la pase al componente Card.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Este es el resultado esperado:
 
-### `npm run build` fails to minify
+📌 EJERCICIO EXTRA
+Controla que no se puedan agregar personajes repetidos que ya se muestran en pantalla.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Crea un botón en tu componente Nav que te permita agregar un personaje random.
+
+[NOTA]: hay 826 personajes en total.

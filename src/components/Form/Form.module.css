@@ -1,0 +1,65 @@
+.formulario {
+  background-color: rgb(193, 84, 6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  width: auto;
+  padding: 1%;
+  border-radius: 2%;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  background-color: coral;
+  color: #000;
+  width: 50%;
+  height: 20%;
+  margin-top: 2px;
+}
+
+.botonSubmit {
+  border-color: darkred;
+  width: 95%;
+  height: 95%;
+  border-radius: 2%;
+  font-size: 1.2rem;
+  background-color: coral;
+  margin: 0.1rem;
+}
+
+.botonSubmit:hover {
+  border: 2.2px solid rgb(100, 1, 1);
+  scale: 106%;
+}
+
+.contenedorImagen {
+  background-image: url("./mortycaminando.jpg");
+  width: 55%;
+  height: 50%;
+}
+
+.spanValido {
+  color: #ff2222;
+}
+
+.spanValido {
+  color: #05f80d;
+}
+
+.h2 {
+  font-size: 3rem;
+  text-align: center;
+  padding: 1.2rem;
+  margin: 1rem;
+  height: 1rem;
+  color: rgb(52, 14, 0);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}

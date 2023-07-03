@@ -1,0 +1,23 @@
+.barraBusqueda {
+  border-color: darkred;
+  width: 15rem;
+  height: 1.2rem;
+  padding: 1rem;
+  border-radius: 2%;
+  background-color: coral;
+}
+
+.botonBusqueda {
+  border-color: darkred;
+  width: 8rem;
+  height: 2.1rem;
+  border-radius: 2%;
+  font-size: 1.2rem;
+  background-color: coral;
+  margin: 0.2rem;
+}
+
+.botonBusqueda:hover {
+  border: 2.2px solid rgb(100, 1, 1);
+  scale: 106%;
+}
