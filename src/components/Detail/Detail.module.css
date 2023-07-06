@@ -2,9 +2,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
-  width: 80%;
+  width: 90%;
   height: 35%;
-  margin: 12rem;
+  /* margin: 1rem; */
+  padding: 90px;
 }
 
 .imagen {

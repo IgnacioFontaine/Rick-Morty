@@ -9,6 +9,7 @@ import Detail from "./components/Detail/Detail";
 import Error from "./components/Error/Error";
 import Form from "./components/Form/Form";
 import { useEffect } from "react";
+import Favorites from "./components/Favorites/Favorites";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -32,6 +33,7 @@ function App() {
     } else alert("Este personaje está repetido.");
   };
 
+  //Quitar cards
   function onClose(id) {
     const charactersFiltered = characters.filter(
       (character) => character.id !== Number(id)
@@ -39,6 +41,7 @@ function App() {
     setCharacters(charactersFiltered);
   }
 
+  //Fake Login info
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
@@ -64,11 +67,11 @@ function App() {
     !access && navigate("/");
   }, [access]);
 
+  //Rutas para navegar
   return (
     <div className="App">
       {/* Nav se muestra siempre que no sea el Login*/}
       {pathname !== "/" && <Nav onSearch={onSearch} logout={logout} />}
-      {/* <Nav onSearch={onSearch} /> */}
 
       <Routes>
         {/* Este es mi Form Login */}
@@ -81,7 +84,10 @@ function App() {
         />
 
         {/* Este va a ser mi About */}
-        <Route path="/about" element={<About></About>} />
+        <Route path="/about" element={<About />} />
+
+        {/* Este va a ser mi Favoritos */}
+        <Route path="/favorites" element={<Favorites />} />
 
         {/* Este va a ser mi Detail */}
         <Route path="/detail/:id" element={<Detail />} />

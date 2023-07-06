@@ -12,6 +12,9 @@ export default function Nav(prop) {
       <Link to="/home">
         <button className={style.botonNav}>Home</button>
       </Link>
+      <Link to="/favorites">
+        <button className={style.botonNav}>Fav❤️</button>
+      </Link>
       {/* Este Botón te debería sacar los permisos y mandar al Login */}
       <Link to="/">
         <button className={style.botonNav} onClick={prop.logout}>
