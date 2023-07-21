@@ -20,6 +20,14 @@ export default function About() {
             Aquí dejo a su disposición mi Linkedin por si te interesa compartir
             algún Feedback!
           </h2>
+          {/* <div>
+            <a
+              href="https://www.linkedin.com/in/ignacio-fontaine/"
+              target="_blank"
+            >
+              Mi perfil de LinkedIn
+            </a>
+          </div> */}
         </div>
       </div>
     </div>

@@ -1,19 +1,30 @@
+.contenedor {
+  display: inline-flex;
+  justify-content: center;
+  height: 5rem;
+  width: 100%;
+  margin: 50px;
+  padding: 50px;
+}
+
 .h1 {
-  font-size: 8rem;
+  font-size: 7rem;
   text-align: center;
-  padding: 2rem;
-  margin: 0.1px;
-  height: 5.5rem;
+  padding: 1rem;
+  margin: 50px;
+  height: 3rem;
   color: rgb(52, 14, 0);
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  justify-content: left;
 }
 
 .h2 {
   font-size: 1.5rem;
   text-align: center;
-  padding: 0.5rem;
+  padding: 0.7rem;
   margin: 1.5rem;
-  height: 1.5rem;
+  height: 1.8rem;
   color: rgb(52, 14, 0);
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  justify-content: right;
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addFavorite, removeFavorite } from "../../Redux/actions";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function Card({
   id,
@@ -43,7 +44,9 @@ function Card({
     }
   };
 
-  //Mapeo favoritos, revisar
+  const pagFavoritos = useLocation();
+
+  //Mapeo favoritos
   useEffect(() => {
     myFavorites.forEach((fav) => {
       if (fav.id === id) {
@@ -64,10 +67,13 @@ function Card({
           {species} || {gender}
         </h1>
       </div>
+      {/* Este botón no debería renderizarse en los favoritos */}
+      {pagFavoritos.pathname === "/favorites" ? null : (
+        <button className={style.button} onClick={() => onClose(id)}>
+          X
+        </button>
+      )}
 
-      <button className={style.button} onClick={() => onClose(id)}>
-        X
-      </button>
       {/* Renderiza el corazón dependiendo el estado de isFav */}
       {isFav ? (
         <button className={style.botonFav} onClick={handleFavorite}>

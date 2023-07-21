@@ -6,7 +6,7 @@ import validaciones from "./validation";
 
 export default function Form({ login }) {
   const [userData, setUserData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [errors, setErrors] = useState({});
@@ -35,17 +35,17 @@ export default function Form({ login }) {
         <div className={style.formulario}>
           <div>
             {/* Email */}
-            <label htmlFor="username">Username: </label>
+            <label htmlFor="email">Username: </label>
             <input
               type="text"
-              name="username"
-              value={userData.username}
+              name="email"
+              value={userData.email}
               onChange={handleChange}
               className={style.input}
               autoComplete="off"
             ></input>
 
-            {errors.username && <p>{errors.username}</p>}
+            {errors.email && <p>{errors.email}</p>}
           </div>
 
           {/* Password */}

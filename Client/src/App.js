@@ -14,23 +14,26 @@ import Favorites from "./components/Favorites/Favorites";
 function App() {
   const [characters, setCharacters] = useState([]);
 
-  const onSearch = (id) => {
-    let repeat = true;
-    characters.forEach((personaje) => {
-      if (personaje.id === parseInt(id)) {
-        repeat = false;
-      }
-    });
-    if (repeat) {
-      axios(`https://rickandmortyapi.com/api/character/${id}`).then(
-        ({ data }) => {
-          if (data.name) {
-            setCharacters((oldChars) => [...oldChars, data]);
-          }
+  const onSearch = async (id, req, res) => {
+    try {
+      let repeat = true;
+      characters.forEach((personaje) => {
+        if (personaje.id === parseInt(id)) {
+          repeat = false;
         }
-      );
-      // .catch(error=>alert("No hay personajes con este ID!")) verificar indentación
-    } else alert("Este personaje está repetido.");
+      });
+      if (repeat) {
+        axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
+          ({ data }) => {
+            if (data.name) {
+              setCharacters((oldChars) => [...oldChars, data]);
+            }
+          }
+        );
+      }
+    } catch (error) {
+      res.status(404).json({ error: error.message });
+    }
   };
 
   //Quitar cards
@@ -45,16 +48,22 @@ function App() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
-  const EMAIL = "Prueba@gmail.com";
-  const PASSWORD = "Prueba01";
 
   //Login
-  function login(userData) {
-    if (userData.username === EMAIL && userData.password === PASSWORD) {
-      setAccess(true);
-      navigate("/home");
+  const login = (userData, req, res) => {
+    try {
+      const { email, password } = userData;
+      const URL = "http://localhost:3001/rickandmorty/login/";
+      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+        const { access } = data;
+        setAccess(access);
+        access && navigate("/home");
+      });
+    } catch (AxiosError) {
+      //No envia error al loguearte mal
+      res.status(500).send(window.alert("Credenciales incorrectas!"));
     }
-  }
+  };
 
   //Logout
   function logout() {
@@ -65,6 +74,7 @@ function App() {
   // App.js
   useEffect(() => {
     !access && navigate("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [access]);
 
   //Rutas para navegar
@@ -87,7 +97,7 @@ function App() {
         <Route path="/about" element={<About />} />
 
         {/* Este va a ser mi Favoritos */}
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/favorites" element={<Favorites />} onClose={onClose} />
 
         {/* Este va a ser mi Detail */}
         <Route path="/detail/:id" element={<Detail />} />
