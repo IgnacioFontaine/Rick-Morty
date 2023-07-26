@@ -9,9 +9,6 @@ const getCharById = async (req, res) => {
     //Hacer promesa
     const { data } = await axios(`${URL_API}/${id}`);
 
-    //Valida que haya personaje
-    if (!data.nombre) throw Error(`Faltan datos del personaje ID: ${id}.`);
-
     const chacater = {
       id: Number(data.id),
       name: data.name,
@@ -25,9 +22,8 @@ const getCharById = async (req, res) => {
     return res.status(200).json(chacater);
   } catch (error) {
     //De no encontrarlo, mensaje error
-    return error.message.incluides("ID")
-      ? res.status(404).send(error.message)
-      : res.status(500).send(error.response.data.error);
+
+    return res.status(404).send(error.message);
   }
 };
 

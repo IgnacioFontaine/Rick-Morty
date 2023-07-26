@@ -1,8 +1,13 @@
+//Data Base
+const { conn } = require("./DB_connection");
+
 //Express
 const express = require("express");
 const server = express();
+
 //Morgan
 const morgan = require("morgan");
+
 //Ruter
 const router = require("./routes/index");
 
@@ -28,5 +33,6 @@ server.use("/rickandmorty", router);
 
 //Server activo
 server.listen(PORT, () => {
+  conn.sync();
   console.log("Server raised in port: " + PORT);
 });

@@ -14,25 +14,28 @@ import Favorites from "./components/Favorites/Favorites";
 function App() {
   const [characters, setCharacters] = useState([]);
 
-  const onSearch = async (id, req, res) => {
-    try {
-      let repeat = true;
-      characters.forEach((personaje) => {
-        if (personaje.id === parseInt(id)) {
-          repeat = false;
-        }
-      });
-      if (repeat) {
-        axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
-          ({ data }) => {
-            if (data.name) {
-              setCharacters((oldChars) => [...oldChars, data]);
-            }
-          }
-        );
+  const onSearch = async (id) => {
+    let repeat = true;
+    characters.forEach((personaje) => {
+      if (personaje.id === parseInt(id)) {
+        repeat = false;
       }
-    } catch (error) {
-      res.status(404).json({ error: error.message });
+    });
+
+    if (repeat) {
+      try {
+        const response = await axios(
+          `http://localhost:3001/rickandmorty/character/${id}`
+        );
+        const data = response.data;
+        if (data.name) {
+          setCharacters((oldChars) => [...oldChars, data]);
+        }
+      } catch (error) {
+        alert("No existe personaje con ese ID.");
+      }
+    } else {
+      alert("Personaje repetido!");
     }
   };
 
